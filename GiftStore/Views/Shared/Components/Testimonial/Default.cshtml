@@ -1,0 +1,202 @@
+﻿@model IEnumerable<Testimonial>
+
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<style>
+    .background-box {
+        background-color: rgba(200, 162, 255, 0.5); /* لون بنفسجي فاتح مع شفافية */
+        padding: 20px; /* مسافة داخلية لجعل المحتوى مرتبا */
+        border-radius: 10px; /* زوايا مدورة */
+        text-align: center; /* توسيط النص */
+    }
+
+    .card-product {
+        position: relative; /* لجعل العناصر داخل البطاقة تتوضع بشكل صحيح */
+        overflow: hidden; /* للتأكد من عدم تجاوز المحتوى */
+    }
+
+    .lead {
+        font-size: 1.2rem; /* حجم خط أكبر للنص */
+        color: #333; /* لون نص داكن */
+        font-weight: bold; /* جعل النص أكثر بروزاً */
+    }
+</style>
+
+@*<section class="container pt-15 pb-15 pt-lg-17 pb-lg-20">
+    <div class="text-center">
+        <h1 class="mb-12">Testimonials</h1>
+    </div>
+
+    <div class="slick-slider" data-slick-options="{&quot;arrows&quot;:true,&quot;centerMode&quot;:true,&quot;centerPadding&quot;:&quot;calc((100% - 1440px) / 2)&quot;,&quot;dots&quot;:true,&quot;infinite&quot;:true,&quot;responsive&quot;:[{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;arrows&quot;:false,&quot;dots&quot;:false,&quot;slidesToShow&quot;:3}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;arrows&quot;:false,&quot;dots&quot;:false,&quot;slidesToShow&quot;:2}},{&quot;breakpoint&quot;:576,&quot;settings&quot;:{&quot;arrows&quot;:false,&quot;dots&quot;:false,&quot;slidesToShow&quot;:1}}],&quot;slidesToShow&quot;:4}">
+        @foreach (var item in Model)
+        {
+            @if (item.IsApproved)
+            {
+                <div class="mb-6" style="object-fit: cover; width: 270px; height: 360px;">
+                    <div class="card card-product grid-2 bg-transparent border-0" >
+                        <figure class="card-img-top position-relative mb-7 overflow-hidden">
+                            <div class="background-box">
+                                <p class="lead my-3 text-muted">
+                                    "@item.Content."
+                                </p>
+                            </div>
+                        </figure>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</section>
+*@
+
+
+
+<section class="container pt-15 pb-15 pt-lg-17 pb-lg-20">
+    <div class="text-center">
+        <h1 class="mb-12">Testimonials</h1>
+    </div>
+
+    <div class="slick-slider" data-slick-options="{&quot;arrows&quot;:true,&quot;centerMode&quot;:true,&quot;centerPadding&quot;:&quot;calc((100% - 1440px) / 2)&quot;,&quot;dots&quot;:true,&quot;infinite&quot;:true,&quot;responsive&quot;:[{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;arrows&quot;:false,&quot;dots&quot;:false,&quot;slidesToShow&quot;:3}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;arrows&quot;:false,&quot;dots&quot;:false,&quot;slidesToShow&quot;:2}},{&quot;breakpoint&quot;:576,&quot;settings&quot;:{&quot;arrows&quot;:false,&quot;dots&quot;:false,&quot;slidesToShow&quot;:1}}],&quot;slidesToShow&quot;:4}">
+        @foreach (var item in Model)
+        {
+            @if (item.IsApproved)
+            {
+                <div class="mb-6" style="object-fit: cover; width: 270px; height: 360px;">
+                    <div class="card card-product grid-2 bg-transparent border-0">
+                        <figure class="card-img-top position-relative mb-7 overflow-hidden">
+                            <div class="background-box" style="width: 250px; height: 150px; overflow: auto;">
+                                <p class="lead my-3 text-muted">
+                                    "@item.Content."
+                                </p>
+                            </div>
+                        </figure>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+@*@foreach (var item in Model)
+{
+    
+    @if (item.IsApproved)
+    {
+        <h1>@item.Content</h1>
+    }
+
+
+}*@
+@*<section>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-xl-8 text-center">
+            <h3 class="mb-4">Testimonials</h3>
+            
+        </div>
+    </div>
+
+    <div class="row text-center" style="margin-left: 250px;">
+        <div class="col-md-6 mb-4 mb-md-0">
+            <div class="d-flex justify-content-center mb-4">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(22).webp"
+                     class="rounded-circle shadow-1-strong" width="100" height="100" />
+            </div>
+            <p class="lead my-3 text-muted">
+                "Lorem ipsum dolor sit amet eos adipisci, consectetur adipisicing elit sed ut
+                perspiciatis unde omnis."
+            </p>
+            <p class="font-italic font-weight-normal mb-0">- Anna Morian</p>
+        </div>
+    </div>
+</section>
+*@
+
+
+@*<section class="container pt-15 pb-15 pt-lg-17 pb-lg-20">
+	<div class="text-center"><h3 class="mb-12">You may also like</h3></div>
+
+	<div class="slick-slider" data-slick-options="{&#34;arrows&#34;:true,&#34;centerMode&#34;:true,&#34;centerPadding&#34;:&#34;calc((100% - 1440px) / 2)&#34;,&#34;dots&#34;:true,&#34;infinite&#34;:true,&#34;responsive&#34;:[{&#34;breakpoint&#34;:1200,&#34;settings&#34;:{&#34;arrows&#34;:false,&#34;dots&#34;:false,&#34;slidesToShow&#34;:3}},{&#34;breakpoint&#34;:992,&#34;settings&#34;:{&#34;arrows&#34;:false,&#34;dots&#34;:false,&#34;slidesToShow&#34;:2}},{&#34;breakpoint&#34;:576,&#34;settings&#34;:{&#34;arrows&#34;:false,&#34;dots&#34;:false,&#34;slidesToShow&#34;:1}}],&#34;slidesToShow&#34;:4}">
+		 
+    
+			@foreach (var item in Model)
+			{
+			@if (item.IsApproved)
+			{
+				<div class="mb-6">
+					<div class="card card-product grid-2 bg-transparent border-0">
+						<figure class="card-img-top position-relative mb-7 overflow-hidden">
+							
+
+
+							<div class="position-absolute d-flex z-index-2 product-actions  vertical">
+
+
+
+
+							</div>
+							<a href="#" class="btn btn-add-to-cart btn-dark btn-hover-bg-primary btn-hover-border-primary position-absolute z-index-2 text-nowrap btn-sm px-6 py-3 lh-2">Add To Cart</a>
+						</figure>
+						<div class="card-body text-center p-0">
+
+
+							<p class="lead my-3 text-muted">
+								"@item.Content."
+							</p>
+
+
+
+						
+
+						</div>
+					</div>
+
+				</div>
+			}
+
+		}
+	</div>
+
+</section>
+*@
+
+
+
+
+
+@*<section class="container pt-15 pb-15 pt-lg-17 pb-lg-20">
+    <div class="text-center">
+        <h3 class="mb-12">You may also like</h3>
+    </div>
+
+    <div class="slick-slider" data-slick-options="{&quot;arrows&quot;:true,&quot;centerMode&quot;:true,&quot;centerPadding&quot;:&quot;calc((100% - 1440px) / 2)&quot;,&quot;dots&quot;:true,&quot;infinite&quot;:true,&quot;responsive&quot;:[{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;arrows&quot;:false,&quot;dots&quot;:false,&quot;slidesToShow&quot;:3}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;arrows&quot;:false,&quot;dots&quot;:false,&quot;slidesToShow&quot;:2}},{&quot;breakpoint&quot;:576,&quot;settings&quot;:{&quot;arrows&quot;:false,&quot;dots&quot;:false,&quot;slidesToShow&quot;:1}}],&quot;slidesToShow&quot;:4}">
+        @foreach (var item in Model)
+        {
+            @if (item.IsApproved)
+            {
+                <div class="mb-6">
+                    <div class="card card-product grid-2 bg-transparent border-0">
+                        <figure class="card-img-top position-relative mb-7 overflow-hidden">
+                            <div class="background-box">
+                                <p class="lead my-3 text-muted">
+                                    "@item.Content."
+                                </p>
+                            </div>
+                        </figure>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</section>
+*@

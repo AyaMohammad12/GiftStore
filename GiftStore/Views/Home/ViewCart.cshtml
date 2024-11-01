@@ -1,0 +1,270 @@
+﻿@*@model List<CartItem>
+*@
+
+@model IEnumerable<GiftStore.Models.CartItem>
+
+@{
+    ViewData["Title"] = "ViewCart";
+}
+
+@*<h1>ViewCart</h1>
+*@
+@{
+	decimal total = 0; // تعريف متغير لحساب الإجمالي
+}
+
+@foreach (var item in Model)
+{
+	total += item.Quantity * item.Gift.Price; // تجميع السعر الإجمالي
+}
+
+<h6 style="color: red;">Total: $@total </h6>
+
+
+@*<a class="btn btn-primary" asp-action="Gifts" asp-controller="Home">Back to gifts page</a>
+*@
+
+
+
+<section class="container">
+	<div class="shopping-cart">
+		<h2 class="text-center fs-2 mt-12 mb-13">Shopping Cart</h2><form class="table-responsive-md pb-8 pb-lg-10">
+			<table class="table border">
+				<thead class="bg-body-secondary">
+					<tr class="fs-15px letter-spacing-01 fw-semibold text-uppercase text-body-emphasis">
+						<th scope="col" class="fw-semibold border-1 ps-11">products</th>
+						<th scope="col" class="fw-semibold border-1">quantity</th>
+						<th scope="col" class="fw-semibold border-1">Message</th>
+						<th scope="col" class="fw-semibold border-1">Color</th>
+						<th colspan="2" class="fw-semibold border-1">Price</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					@foreach (var item in Model){
+
+					<tr class="position-relative">
+						<th scope="row" class="pe-5 ps-8 py-7 shop-product">
+							<div class="d-flex align-items-center">
+								<div class="form-check">
+
+									<input class="form-check-input rounded-0" type="checkbox" name="check-product"
+										   value="checkbox">
+
+								</div>
+								<div class="ms-6 me-7">
+									<img src="#" data-src="@item.Gift.ImageUrl" class="lazy-image" width="75" height="100"
+										 alt="Natural Coconut Cleansing Oil">
+								</div>
+								<div class="">
+									<p class="fw-500 mb-1 text-body-emphasis">@item.Gift.Name</p>
+									<p class="card-text">
+@*										<span class="fs-13px fw-500 text-decoration-line-through pe-3">$39.00</span>
+*@										<span class="fs-15px fw-bold text-body-emphasis">$@item.Gift.Price</span>
+											@if (item.Gift.numberOfItems == 0)
+											{
+												<span class="fs-13px fw-500 text-decoration-line-through pe-3">out of stock</span>
+
+											}
+
+									</p>
+								</div>
+							</div>
+
+						</th>
+						@*<td class="align-middle">
+							<div class="input-group position-relative shop-quantity">
+								<a href="#" class="shop-down position-absolute z-index-2"><i class="far fa-minus"></i></a>
+
+								<input name="number[]" type="number"
+									   class="form-control form-control-sm px-10 py-4 fs-6 text-center border-0" value="1"
+									   required="">
+
+								<a href="#" class="shop-up position-absolute z-index-2">
+									<i class="far fa-plus"></i>
+								</a>
+							</div>
+						</td>*@
+						<td class="align-middle">
+							<p class="mb-0 text-body-emphasis fw-bold mr-xl-11">@item.Quantity</p>
+						</td>
+							<td class="align-middle">
+								<p class="mb-0 text-body-emphasis fw-bold mr-xl-11">@item.Message</p>
+							</td>
+							<td class="align-middle">
+								<p class="mb-0 text-body-emphasis fw-bold mr-xl-11">@item.SelectedColor</p>
+							</td>
+							<td class="align-middle">
+								<p class="mb-0 text-body-emphasis fw-bold mr-xl-11">
+
+									@(@item.Quantity * @item.Gift.Price)
+</p>
+							</td>
+
+							@*<td class="align-middle text-end pe-8">
+								<a href="#" class="d-block text-secondary">
+									<i class="fa fa-times"></i>
+								</a>
+							</td>
+							<td class="align-middle text-end pe-8">
+							<form asp-action="RemoveFromCart" method="post">
+								<input type="hidden" name="id" value="@item.Id" />
+								<button type="submit" class="fa fa-times">
+								
+								</button>
+							</form>
+							</td>*@
+							<td class="align-middle text-end pe-8">
+							<form asp-action="RemoveFromCart" method="post">
+								<input type="hidden" name="id" value="@item.Id" />
+								<button type="submit" >
+										<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
+											<path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"></path>
+										</svg>
+								</button>
+							</form>
+							</td>
+							@*<td class="align-middle text-end pe-8">
+							
+							</td>*@
+						@*<td class="align-middle text-end pe-8">
+							<a href="#" class="d-block text-secondary">
+								<i class="fa fa-times"></i>
+							</a>
+						</td>*@
+					</tr>
+					}
+					
+					
+					
+
+				</tbody>
+			</table>
+		</form>
+		
+	</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section>
+	<div class="container pt-12 pb-lg-16 pb-16">
+
+
+
+
+
+
+
+
+
+
+		<div class="row gy-8">
+
+			@foreach (var item in Model)
+			{
+				<div class="col-lg-3 col-sm-6 col-12">
+					<div class="card card-product grid-2 bg-transparent border-0" data-animate="fadeInUp">
+						<figure class="card-img-top position-relative mb-7 overflow-hidden">
+							<a asp-action="GiftDetails" asp-controller="Home" asp-route-id="@item.GiftId" class="hover-zoom-in d-block" title="Shield Conditioner">
+								<img src="@item.Gift.ImageUrl" class="img-fluid lazy-image w-100" alt="Shield Conditioner" width="270" height="360">
+							</a>
+
+							<div class="position-absolute product-flash z-index-2 "><span class="badge badge-product-flash on-sale bg-primary">-25%</span></div>
+							<div class="position-absolute d-flex z-index-2 product-actions  vertical">
+
+
+
+
+								<form asp-action="RemoveFromCart" method="post">
+									<input type="hidden" name="id" value="@item.Id" />
+									<button type="submit" class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist sm"
+											data-bs-toggle="tooltip"
+											data-bs-placement="left"
+											data-bs-title="Remove From Cart">
+										<svg class="icon icon-star-light">
+											<use xlink:href="#icon-star-light"></use>
+										</svg>
+									</button>
+								</form>
+
+
+
+							</div>
+							@*
+						*@
+						</figure>
+						<div class="card-body text-center p-0">
+
+
+
+
+
+
+							<span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
+								<del class=" text-body fw-500 me-4 fs-13px">$40.00</del>
+								<ins class="text-decoration-none">$ @item.Gift.Price</ins>
+							</span>
+
+							<h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3"><a class="text-decoration-none text-reset" asp-action="GiftDetails" asp-controller="Home" asp-route-id="@item.GiftId">@item.Gift.Name</a></h4>
+							@if (item.Message != null)
+							{
+								<h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3"><a class="text-decoration-none text-reset"> <span style="color:rebeccapurple">Your Message:</span>  @item.Message</a></h4>
+
+							}
+							<h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3"><a class="text-decoration-none text-reset"> <span style="color:rebeccapurple">Number of items:</span>  @item.Quantity</a></h4>
+							<h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3"><a class="text-decoration-none text-reset"> <span style="color:rebeccapurple">Color:</span>  @item.SelectedColor</a></h4>
+
+
+
+						</div>
+					</div>
+
+				</div>
+
+			}
+		</div>
+
+	</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

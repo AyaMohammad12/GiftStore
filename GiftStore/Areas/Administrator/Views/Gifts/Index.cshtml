@@ -1,0 +1,222 @@
+﻿@model IEnumerable<GiftStore.Models.Gift>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<div class="dashboard-page-content">
+
+	<div class="row mb-9 align-items-center justify-content-between">
+
+		<div class="col-md-6 mb-8 mb-md-0">
+			<h2 class="fs-4 mb-0">Product List</h2>
+			<p>Lorem ipsum dolor sit amet.</p>
+		</div>
+		<div class="col-md-6 d-flex flex-wrap justify-content-md-end">
+
+
+			@*<a href="#" class="btn btn-outline-primary btn-hover-bg-primary me-4">
+				Export
+			</a>
+
+			<a href="#" class="btn btn-outline-primary btn-hover-bg-primary me-4">
+				Import
+			</a>*@
+
+			<a asp-action="Create" class="btn btn-primary">
+				Create new
+			</a>
+
+		</div>
+	</div>
+
+
+	<div class="card mb-4 rounded-4 p-7">
+		
+		<div class="card-body px-0 pt-7 pb-0">
+			<div class="table-responsive">
+				<table class="table table-hover align-middle table-nowrap mb-0">
+					<tbody>
+
+						@foreach (var item in Model) {
+						<tr>
+
+							<td class="text-center">
+								<div class="form-check">
+									<input class="form-check-input rounded-0 ms-0" type="checkbox" id="transactionCheck-0">
+									<label class="form-check-label" for="transactionCheck-0"></label>
+								</div>
+							</td>
+							<td>
+								<div class="d-flex align-items-center flex-nowrap">
+									<a href="../shop/product-details-v1.html"
+									   title="Flowers cotton dress">
+										<img src="@item.ImageUrl" data-src="@item.ImageUrl"
+											 alt="Flowers cotton dress" class="lazy-image" width="60" height="80">
+									</a>
+										<a asp-action="Details" asp-route-id="@item.GiftId"
+									   title="Flowers cotton dress" class="ms-6">
+										<p class="fw-semibold text-body-emphasis mb-0">@item.Name</p>
+									</a>
+								</div>
+							</td>
+
+
+
+
+
+
+
+
+
+
+							<td>$@item.Price</td>
+
+
+
+							<td>
+								<span class="badge rounded-lg rounded-pill alert py-3 px-4 mb-0 alert-success border-0 text-capitalize fs-12">@item.Category.Name</span>
+							</td>
+
+
+
+
+@*							<td>02.11.2021</td>
+*@
+
+
+
+
+
+							<td class="text-center">
+								<div class="d-flex flex-nowrap justify-content-center">
+										<a asp-action="Edit" asp-route-id="@item.GiftId" class="btn btn-primary py-4 px-5 btn-xs fs-13px me-4"><i class="far fa-pen me-2"></i> Edit</a>
+										<a asp-action="Details" asp-route-id="@item.GiftId" class="btn btn-primary py-4 px-5 btn-xs fs-13px me-4"><i class="far fa-pen me-2"></i> Details</a>
+										<a asp-action="Delete" asp-route-id="@item.GiftId" class="btn btn-outline-primary btn-hover-bg-danger btn-hover-border-danger btn-hover-text-light py-4 px-5 fs-13px btn-xs me-4"><i class="far fa-trash me-2"></i> Delete</a>
+
+								</div>
+							</td>
+
+						</tr>
+
+						}
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<nav aria-label="Page navigation example" class="mt-6 mb-4">
+		<ul class="pagination justify-content-start">
+			<li class="page-item active mx-3"><a class="page-link" href="#">01</a></li>
+			<li class="page-item mx-3"><a class="page-link" href="#">02</a></li>
+			<li class="page-item mx-3"><a class="page-link" href="#">03</a></li>
+			<li class="page-item mx-3"><a class="page-link dot" href="#">...</a></li>
+			<li class="page-item mx-3"><a class="page-link" href="#">16</a></li>
+			<li class="page-item mx-3">
+				<a class="page-link" href="#"><i class="far fa-chevron-right"></i></a>
+			</li>
+		</ul>
+	</nav>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h1>Index</h1>
+
+<p>
+	<a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Description)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Price)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.ImageUrl)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Category)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.AvailableColors)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.discount)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.numberOfItems)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Description)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Price)
+				</td>
+				<td>
+
+					@if (!string.IsNullOrEmpty(item.ImageUrl))
+					{
+						<img src="@item.ImageUrl" alt="Slider Image" style="width: 200px; height: auto;" />
+					}
+					else
+					{
+						<span>No Image</span>
+					}
+				
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Category.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.AvailableColors)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.discount)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.numberOfItems)
+				</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@item.GiftId">Edit</a> |
+					<a asp-action="Details" asp-route-id="@item.GiftId">Details</a> |
+					<a asp-action="Delete" asp-route-id="@item.GiftId">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>*@

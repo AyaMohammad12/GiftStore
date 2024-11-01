@@ -1,0 +1,132 @@
+﻿@model IEnumerable<GiftStore.Models.Favorite>
+
+@{
+    ViewData["Title"] = "Favorites";
+}
+
+<h1>Favorites</h1>
+<a class="btn btn-primary" asp-action="Gifts" asp-controller="Home">Back to gifts page</a>
+
+<section>
+	<div class="container pt-12 pb-lg-16 pb-16">
+
+
+		
+
+		@*<div class="text-center position-relative pt-12 pt-lg-17 pb-11 pb-lg-14 mx-auto" style="max-width:700px" data-animate="fadeInUp">
+		<form id="filterForm" method="get" asp-action="Gifts">
+		<div class="btn-group" role="group" aria-label="Categories">
+		<button type="submit" name="categoryId" value="" class="btn btn-secondary">All Categories</button>
+		@foreach (var category in Model.Categories)
+		{
+		<button type="submit" name="categoryId" value="@category.Id" class="btn btn-primary">@category.Name</button>
+		}
+
+		</div>
+		<div class="col-lg-4 col-md-12 d-flex align-items-center justify-content-center">
+		<input type="text" name="searchTerm" value="@Model.SearchTerm" class="form-control me-2" placeholder="Search products..." />
+		<input type="number" name="price" value="@Model.Price" class="form-control me-2" placeholder="Max Price" step="0.01" />
+		<button type="submit" class="btn btn-info">Search</button>
+		</div>
+
+		</form>
+		</div>*@
+
+
+
+		@*<div class="text-center position-relative pt-12 pt-lg-17 pb-11 pb-lg-14 mx-auto" style="max-width:700px" data-animate="fadeInUp">
+		<form id="filterForm" method="get" asp-action="Gifts">
+		<!-- أزرار التصنيفات -->
+		<div class="btn-group mb-3" role="group" aria-label="Categories">
+		<button type="submit" name="categoryId" value="" class="btn btn-secondary">All Categories</button>
+		@foreach (var category in Model.Categories)
+		{
+		<button type="submit" name="categoryId" value="@category.Id" class="btn btn-primary">@category.Name</button>
+		}
+		</div>
+
+		<!-- البحث اليدوي وتحديد السعر الأقصى -->
+		<div class="row justify-content-center align-items-center">
+		<div class="col-md-4 mb-3">
+		<input type="text" name="searchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Search products..." />
+		</div>
+		<div class="col-md-4 mb-3">
+		<input type="number" name="price" value="@Model.Price" class="form-control" placeholder="Max Price" step="0.01" />
+		</div>
+		<div class="col-md-2 mb-3">
+		<button type="submit" class="btn btn-secondary  w-1000">Search</button>
+		</div>
+		</div>
+		</form>
+		</div>*@
+
+
+
+
+
+		<div class="row gy-8">
+
+			@foreach (var item in Model)
+			{
+				<div class="col-lg-3 col-sm-6 col-12">
+					<div class="card card-product grid-2 bg-transparent border-0" data-animate="fadeInUp">
+						<figure class="card-img-top position-relative mb-7 overflow-hidden">
+							<a asp-action="GiftDetails" asp-controller="Home" asp-route-id="@item.GiftId" class="hover-zoom-in d-block" title="Shield Conditioner">
+								<img src="@item.Gift.ImageUrl" class="img-fluid lazy-image w-100" alt="Shield Conditioner" width="270" height="360" style="object-fit: cover; width: 270px; height: 360px;">
+							</a>
+							@if (item.Gift.discount != 0)
+							{
+								<div class="position-absolute product-flash z-index-2 "><span class="badge badge-product-flash on-sale bg-primary">-@item.Gift.discount%</span></div>
+							}
+							<div class="position-absolute d-flex z-index-2 product-actions  vertical">
+
+
+								@*<form asp-action="AddToFavorites" asp-controller="Home" method="post">
+							<input type="hidden" name="giftId" value="@product.Id" />
+							<button type="submit">أضف إلى المفضلة</button>
+							</form>*@
+
+								<form asp-action="RemoveFromFavorites" method="post">
+									<input type="hidden" name="giftId" value="@item.GiftId" />
+									<button type="submit" class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist sm"
+											data-bs-toggle="tooltip"
+											data-bs-placement="left"
+											data-bs-title="Remove From Wishlist">
+										<svg class="icon icon-star-light">
+											<use xlink:href="#icon-star-light"></use>
+										</svg>
+									</button>
+								</form>
+
+								@*<a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist sm" href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Add To Wishlist">
+							<svg class="icon icon-star-light">
+							<use xlink:href="#icon-star-light"></use>
+							</svg>
+							</a>*@
+
+							</div>
+@*							<a href="#" class="btn btn-add-to-cart btn-dark btn-hover-bg-primary btn-hover-border-primary position-absolute z-index-2 text-nowrap btn-sm px-6 py-3 lh-2">Add To Cart</a>
+*@						</figure>
+						<div class="card-body text-center p-0">
+
+
+
+
+
+
+							<span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
+								<del class=" text-body fw-500 me-4 fs-13px">$40.00</del>
+								<ins class="text-decoration-none">$ @item.Gift.Price</ins>
+							</span>
+
+							<h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3"><a class="text-decoration-none text-reset" asp-action="GiftDetails" asp-controller="Home" asp-route-id="@item.GiftId">@item.Gift.Name</a></h4>
+						</div>
+					</div>
+
+				</div>
+
+			}
+		</div>
+
+	</div>
+</section>

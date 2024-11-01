@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "AddTestimonial";
+}
+
+<h1>Add Testimonial</h1>
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
+
+<form asp-action="AddTestimonial" method="post">
+    <div class="form-group">
+        <label for="Content">Add your testimonial :)</label>
+        <textarea id="Content" name="Content" class="form-control" rows="4" maxlength="500" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>

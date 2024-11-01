@@ -1,0 +1,305 @@
+﻿@model GiftStore.Models.ViewModels.GiftViewModel
+
+@{
+    ViewData["Title"] = "GiftDetails";
+}
+
+<h1>GiftDetails</h1>
+
+<section class="container pt-6 pb-13 pb-lg-20">
+	<div class="row ">
+		<div class="col-md-6 pe-lg-13">
+			<div class="row">
+				
+				<div class="col-xl-10 ps-xl-8 pe-xl-0 order-0 order-xl-1">
+					<img src="#" data-src="@Model.Gift.ImageUrl" width="450" height="100" title="" class="h-auto lazy-image" alt="" style="object-fit: cover; width: 270px; height: 360px;">
+					
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 pt-md-0 pt-10">
+			<p class="d-flex align-items-center mb-6">
+@*				<span class="text-decoration-line-through">39.00</span>
+*@				<span class="fs-18px text-body-emphasis ps-6 fw-bold">$@Model.Gift.Price</span>
+@if (Model.Gift.discount!= 0)
+				{
+					<span class="badge text-bg-primary fs-6 fw-semibold ms-7 px-6 py-3">@Model.Gift.discount%</span>
+				}
+				@*@if (Model.Gift.numberOfItems == 0)
+				{
+					<span class="text-body-emphasis fw-semibold mb-6" style="color: red;">There are no items available now !</span>
+
+				}
+				else
+				{
+					<span class="text-body-emphasis fw-semibold mb-6">Number Of Available items :@Model.Gift.numberOfItems</span>
+
+				}*@
+
+
+
+			</p>
+			@if (Model.Gift.numberOfItems == 0)
+			{
+				<h6 class="mb-4 pb-2 fs-9" style="color: red;"> Out of stock :(</h6>
+			}
+			else
+			{
+				<h6 class="mb-4 pb-2 fs-9">Number Of Available items :@Model.Gift.numberOfItems</h6>
+
+			}
+			<h1 class="mb-4 pb-2 fs-4">@Model.Gift.Name</h1>
+
+		<p class="fs-15px">@Model.Gift.Description.</p>
+
+			@if (Model.Gift.numberOfItems == 0)
+			{
+				<h6 class="mb-4 pb-2 fs-1" style="color: red;">Out of stock :( !</h6>
+			}
+
+			else
+			{
+				
+			
+			<form class="product-info-custom" asp-action="AddToCart" asp-controller="Home" method="post">
+				
+
+				<p class="text-body-emphasis fw-semibold mb-6"> Number Of Available items: @Model.Gift.numberOfItems </p>
+				
+
+				<table>
+					<tr>
+						<td>
+							<label for="color">Choose The Color:</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<select id="color" name="SelectedColor" style="width: 150px;">
+								@foreach (var color in Model.AvailableColors)
+								{
+									<option value="@color">@color</option>
+								}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="quantity">Enter Number Of Quantity:</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="number" id="quantity" name="Quantity" min="1" value="1" style="width: 150px;" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="customMessage">Add Your Message or Name:</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" id="customMessage" name="message" placeholder="Write here" style="width: 150px;" />
+						</td>
+					</tr>
+				</table>
+
+				<input type="hidden" name="giftId" value="@Model.Gift.GiftId" />
+@*				<button type="submit">إضافة إلى السلة</button>
+*@				<button type="submit" class="btn btn-lg btn-dark mb-7 mt-7 w-100 btn-hover-bg-primary btn-hover-border-primary">
+					Add To Bag
+				</button>
+			</form>
+			}
+			<div class="d-flex align-items-center flex-wrap">
+				
+				<form asp-action="AddToFavorites" method="post">
+					<input type="hidden" name="giftId" value="@Model.Gift.GiftId" />
+					<button type="submit" class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist sm"
+							data-bs-toggle="tooltip"
+							data-bs-placement="left"
+							data-bs-title="Add To Wishlist">
+						<svg class="icon icon-star-light">
+							<use xlink:href="#icon-star-light"></use>
+						</svg>
+					</button>
+				</form>
+
+				@*<a href="#" class="text-decoration-none fw-semibold fs-6 me-9 pe-2 d-flex align-items-center" asp-action="AddToFavorites">
+					<svg class="icon fs-5">
+						<use xlink:href="#icon-star-light"></use>
+					</svg>
+					<span class="ms-4 ps-2">Add to wishlist</span>
+				</a>*@
+			</div>
+
+			<ul class="single-product-meta list-unstyled border-top pt-7 mt-7">
+				
+				<li class="d-flex mb-4 pb-2 align-items-center">
+					<span class="text-body-emphasis fw-semibold fs-14px">Categories:</span>
+					<span class="ps-4">@Model.Gift.Category?.Name</span>
+				</li>
+				<li class="d-flex mb-4 pb-2 align-items-center">
+					<span class="text-body-emphasis fw-semibold fs-14px">Share:</span>
+					<ul class="list-inline d-flex align-items-center mb-0 col-8 col-lg-10 ps-4">
+						<li class="list-inline-item me-7">
+							<a href="#" class="fs-14px text-body product-info-share" data-bs-toggle="tooltip" data-bs-title="Twitter">
+								<i class="fab fa-twitter"></i>
+							</a>
+						</li>
+						<li class="list-inline-item me-7">
+							<a href="#" class="fs-14px text-body product-info-share" data-bs-toggle="tooltip" data-bs-title="Facebook">
+								<i class="fab fa-facebook-f"></i>
+							</a>
+						</li>
+						<li class="list-inline-item me-7">
+							<a href="#" class="fs-14px text-body product-info-share" data-bs-toggle="tooltip" data-bs-title="Instagram">
+								<i class="fab fa-instagram"></i>
+							</a>
+						</li>
+						<li class="list-inline-item">
+							<a href="#" class="fs-14px text-body product-info-share" data-bs-toggle="tooltip" data-bs-title="Youtube">
+								<i class="fab fa-youtube"></i>
+							</a>
+						</li>
+
+					</ul>
+				</li>
+
+				<li class="d-flex mb-4 pb-2 align-items-center">
+					<a class="btn btn-primary" asp-action="Gifts" asp-controller="Home">Back to gifts page</a>
+
+				</li>
+			</ul>
+
+
+
+		</div>
+	</div>
+</section>
+
+
+
+
+
+
+<@*h2>@Model.Gift.Name</h2>
+<p>Price: @Model.Gift.Price</p>
+<p>Description: @Model.Gift.Description</p>
+<p>Category: @Model.Gift.Category?.Name</p>*@
+
+<@*form asp-action="AddToCart" asp-controller="Home" method="post">
+    <label for="color">اختر اللون:</label>
+    <select id="color" name="SelectedColor">
+        @foreach (var color in Model.AvailableColors)
+        {
+            <option value="@color">@color</option>
+        }
+    </select>
+
+    <label for="quantity">عدد العناصر:</label>
+    <input type="number" id="quantity" name="Quantity" min="1" value="1" />
+
+    <label for="customMessage">أضف رسالة مخصصة:</label>
+    <input type="text" id="customMessage" name="message" placeholder="أدخل رسالتك هنا" />
+
+    <input type="hidden" name="giftId" value="@Model.Gift.GiftId" />
+    <button type="submit">إضافة إلى السلة</button>
+</form>
+
+<a asp-action="Index" asp-controller="Home">العودة إلى الهدايا</a>*@
+
+
+		@*<h3>Related Gifts</h3>
+<div>
+	@if (Model.RelatedGifts != null && Model.RelatedGifts.Any())
+	{
+			<ul>
+			@foreach (var relatedGift in Model.RelatedGifts)
+			{
+						<li>
+							<a href="@Url.Action("GiftDetails", new { id = relatedGift.GiftId })">
+						@relatedGift.Name
+							</a>
+						</li>
+			}
+			</ul>
+	}
+	else
+	{
+			<p>No related gifts available.</p>
+	}
+</div>*@
+
+
+
+
+
+
+	<section class="container pt-15 pb-15 pt-lg-17 pb-lg-20">
+	<div class="text-center" ><h3 class="mb-12">You may also like</h3></div>
+	
+	<div class="slick-slider" data-slick-options="{&#34;arrows&#34;:true,&#34;centerMode&#34;:true,&#34;centerPadding&#34;:&#34;calc((100% - 1440px) / 2)&#34;,&#34;dots&#34;:true,&#34;infinite&#34;:true,&#34;responsive&#34;:[{&#34;breakpoint&#34;:1200,&#34;settings&#34;:{&#34;arrows&#34;:false,&#34;dots&#34;:false,&#34;slidesToShow&#34;:3}},{&#34;breakpoint&#34;:992,&#34;settings&#34;:{&#34;arrows&#34;:false,&#34;dots&#34;:false,&#34;slidesToShow&#34;:2}},{&#34;breakpoint&#34;:576,&#34;settings&#34;:{&#34;arrows&#34;:false,&#34;dots&#34;:false,&#34;slidesToShow&#34;:1}}],&#34;slidesToShow&#34;:4}">
+		@if (Model.RelatedGifts != null && Model.RelatedGifts.Any())
+		{
+			@foreach (var relatedGift in Model.RelatedGifts)
+			{
+		<div class="mb-6">
+			<div class="card card-product grid-2 bg-transparent border-0">
+	<figure class="card-img-top position-relative mb-7 overflow-hidden">
+						<a asp-action="GiftDetails" asp-controller="Home" asp-route-id="@relatedGift.GiftId" class="hover-zoom-in d-block" title="Shield Conditioner">
+					<img src="#" data-src="@relatedGift.ImageUrl" class="img-fluid lazy-image w-100" alt="Shield Conditioner" width="330" height="440" style="object-fit: cover; width: 330px; height: 440px;">
+</a>
+
+							@if (@relatedGift.discount != 0)
+							{
+											<div class="position-absolute product-flash z-index-2 "><span class="badge badge-product-flash on-sale bg-primary">-@relatedGift.discount%</span></div>
+
+							}
+							
+							<div class="position-absolute d-flex z-index-2 product-actions  vertical">
+								
+	@*<a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist sm" href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Add To Wishlist">
+		<svg class="icon icon-star-light">
+			<use xlink:href="#icon-star-light"></use>
+		</svg>
+	</a>*@
+	
+
+			<form asp-action="AddToFavorites" method="post">
+									<input type="hidden" name="giftId" value="@relatedGift.GiftId" />
+							<button type="submit" class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist sm"
+									data-bs-toggle="tooltip"
+									data-bs-placement="left"
+									data-bs-title="Add To Wishlist">
+								<svg class="icon icon-star-light">
+									<use xlink:href="#icon-star-light"></use>
+								</svg>
+							</button>
+						</form>
+
+
+</div><a href="#" class="btn btn-add-to-cart btn-dark btn-hover-bg-primary btn-hover-border-primary position-absolute z-index-2 text-nowrap btn-sm px-6 py-3 lh-2">Add To Cart</a>
+	</figure>
+	<div class="card-body text-center p-0">
+
+
+
+
+
+
+<span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
+		<del class=" text-body fw-500 me-4 fs-13px">$40.00</del>
+				<ins class="text-decoration-none">$@relatedGift.Price</ins></span>
+
+								<h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3"><a class="text-decoration-none text-reset"  asp-action="GiftDetails" asp-controller="Home" asp-route-id="@relatedGift.GiftId">@relatedGift.Name</a></h4>
+	</div>
+</div>
+
+		</div>
+			}
+		}
+		</div>
+				
+</section>

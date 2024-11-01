@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Slider>
+
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+	var firsImage = Model.ElementAtOrDefault(0); // للحصول على الصورة الثانية
+}
+@{
+	var secondImage = Model.ElementAtOrDefault(1); // للحصول على الصورة الثانية
+}
+@{
+	var thirdImage = Model.ElementAtOrDefault(2); // للحصول على الصورة الثانية
+}
+<section>
+	<div class="hero container">
+		<div class="row g-8">
+			<div class="col-12 col-lg-8 mb-md-0" data-animate="fadeInUp">
+				<div class="border-0 text-center hero-hover-shine hero-hover hero-power-1">
+					<div data-bg-src="@firsImage.SliderImg1"
+						 class="lazy-bg card-img bg-image h-100 hero-hover-item"></div>
+					<div class="position-absolute start-0 top-0 p-10 p-md-14 justify-content-start text-start">
+
+						@*<div class="hero-content text-start">
+							<div data-animate="fadeInDown">
+								<h1 class="mb-7 text-white fs-2">Empower Yourself</h1>
+								<p class="hero-desc text-white">Get the skin you want to feel</p>
+							</div>
+							<a href="#" data-animate="fadeInUp" class="pb-2 bg-transparent fw-semibold text-decoration-none hero-link p-0 text-white">
+								Shop Now
+								<svg class="icon">
+									<use xlink:href="#icon-arrow-right"></use>
+								</svg>
+							</a>
+						</div>*@
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-4 hero-power-2">
+				<div class="row g-sm-8 g-lg-0 h-100">
+					<div class="col-12 col-sm-6 col-lg-12 h-auto" data-animate="fadeInUp">
+						<div class="border-0 text-center hero-hover-shine hero-hover h-100">
+
+							<div class="lazy-bg bg-overlay card-img hero-hover-item bg-image h-100   light-mode-img" data-bg-src="@secondImage.SliderImg1">
+							</div>
+							<div class="lazy-bg bg-overlay dark-mode-img card-img hero-hover-item bg-image h-100" data-bg-src="./assets/images/hero-slider/hero-slider-white-40.jpg">
+							</div>
+							<div class="card-img-overlay p-14 align-items-center d-flex justify-content-center">
+
+								@*<div class="hero-content">
+									<div data-animate="fadeInDown">
+									</div>
+									<a href="#" data-animate="fadeInUp" class="btn btn-white px-10  shadow-sm z-index-1">
+										Haircare
+									</a>
+								</div>*@
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-sm-6 col-lg-12 h-auto mt-8 mt-lg-8" data-animate="fadeInUp">
+						<div class="border-0 text-center hero-hover-shine hero-hover h-100">
+
+							<div class="lazy-bg bg-overlay card-img hero-hover-item bg-image h-100   light-mode-img" data-bg-src="@thirdImage.SliderImg1">
+							</div>
+							<div class="lazy-bg bg-overlay dark-mode-img card-img hero-hover-item bg-image h-100" data-bg-src="./assets/images/hero-slider/hero-slider-white-41.jpg">
+							</div>
+							<div class="card-img-overlay p-14 align-items-center d-flex justify-content-center">
+
+								@*<div class="hero-content">
+									<div data-animate="fadeInDown">
+									</div>
+									<a href="#" data-animate="fadeInUp" class="btn btn-white px-10 shadow-sm z-index-1">
+										Skincare
+									</a>
+								</div>*@
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

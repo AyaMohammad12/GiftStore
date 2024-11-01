@@ -1,0 +1,95 @@
+﻿@model GiftStore.Models.ViewModels.GiftViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}	
+	<main id="content" class="wrapper layout-page">
+	@await Component.InvokeAsync("Slider")
+
+		<section>
+			<div class="container pt-12 pb-lg-16 pb-16">
+				<div class="text-center position-relative pt-12 pt-lg-17 pb-11 pb-lg-14 mx-auto" style="max-width:700px" data-animate="fadeInUp">
+					<p class="fs-80px fw-normal fs-sm-90px fs-md-142px text-custom-1 font-primary lh-1 top-0 position-absolute w-100 z-index-1">Glowing Gift</p>
+					<p class="position-relative z-index-2 fs-15px mb-6 ls-1 text-body-emphasis fw-semibold">OUR GIFT</p>
+				<h2 class="mb-4 position-relative z-index-2">Because you need best gifts for best occasions</h2>
+				</div>
+				<div class="row gy-8">
+
+				@await Component.InvokeAsync("Gift")
+
+					
+				</div>
+				<div class="text-center mt-12">
+				<a asp-action="Gifts" asp-controller="Home" target="_blank" class="btn btn-outline-dark" data-animate="fadeInUp">
+						Shop All Product
+					</a>
+				</div>
+			</div>
+		</section>
+
+	<section>
+
+		<div class="container">
+			<div class="row gy-30px gx-30px">
+				<div class="col-12 col-lg-5" data-animate="fadeInUp">
+					<div class="card border-0 rounded-0 banner-09" data-bs-theme="light">
+						<img class="card-img object-fit-cover" width="450" height="450" src="./assets/images/banner/banner-48.jpg" alt="25% off Everything"><div class="card-img-overlay d-inline-flex flex-column ps-md-13 pt-md-15 px-10 py-15">
+							<h3 class="card-title lh-52px fw-semibold mw-xl-60 mw-lg-0 w-md-80 mb-7 fs-42px">25% off Everything</h3><p class="card-text fs-18px w-md-70 text-body">Makeup with extended range in colors for every human.</p><div class="mt-7"><a href="#" class="btn btn btn-dark btn-hover-bg-primary border-0 fs-6 text-white">Shop Sale</a></div>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-12 col-lg-7" data-animate="fadeInUp">
+					<div class="card border-0 rounded-0 banner-06 hover-zoom-in hover-shine">
+
+						<img class="lazy-image w-100 card-img object-fit-cover  light-mode-img" src="~/images1/wedding-gift-for-couple-personalised-candle (1).webp" data-src="" width="690" height="450" alt="">
+@*						<img class="lazy-image dark-mode-img w-100 card-img object-fit-cover " src="#" data-src="./assets/images/banner/banner-white-46.jpg" width="690" height="450" alt=""><div class="card-img-overlay">
+*@							<div class="position-absolute top-50 end-0 translate-middle-y px-md-0 px-12">
+								<div class="mt-7"></div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="row mt-0 gy-30px gx-30px" data-animate="fadeInUp">
+				<div class="col-12 col-lg-7">
+					<div class="card border-0 rounded-0 banner-06 hover-zoom-in hover-shine">
+
+@*						<img class="lazy-image w-100 card-img object-fit-cover  light-mode-img" src="#" data-src="./assets/images/banner/banner-47.jpg" width="690" height="450" alt="">
+*@						<img class="lazy-image dark-mode-img w-100 card-img object-fit-cover " src="~/images1/beautiful-cheerful-happy-young-girl-with-christmas-gifts-background-new-year-tree-home_324489-3990.jpg" data-src="" width="690" height="450" alt=""><div class="card-img-overlay">
+							<div class="position-absolute top-50 end-0 translate-middle-y px-md-0 px-12">
+								<div class="mt-7"></div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="col-12 col-lg-5" data-animate="fadeInUp">
+					<div class="card border-0 rounded-0 banner-09" data-bs-theme="light">
+						<img class="card-img object-fit-cover" width="450" height="450" src="./assets/images/banner/banner-48.jpg" alt="Get The Skin You Want To Feel"><div class="card-img-overlay d-inline-flex flex-column ps-md-13 pt-md-15 px-10 py-15">
+							<h3 class="card-title lh-52px fw-semibold mb-7 fs-42px">Get The Skin You Want To Feel</h3><p class="card-text fs-18px w-md-70 text-body">Makeup with extended range in colors for every human.</p><div class="mt-7"><a href="#" class="btn btn btn-dark btn-hover-bg-primary border-0 fs-6 text-white">Shop Now</a></div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+		@*<section class="pt-lg-17 pb-lg-18 pt-15 pb-16">
+
+		
+		</section>*@
+	@await Component.InvokeAsync("Testimonial")
+
+	</main>
+	
+
+
+	
+
+
+
